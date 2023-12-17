@@ -1,4 +1,4 @@
-package org.example.labs;
+package org.example.labs.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
