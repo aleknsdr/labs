@@ -5,50 +5,44 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.labs.dao.AddressDbDao;
 import org.example.labs.dao.CityDbDao;
 import org.example.labs.dao.CountryDbDAO;
 import org.example.labs.dao.RegionDbDao;
-import org.example.labs.domain.Address;
 import org.example.labs.domain.City;
-import org.example.labs.domain.Country;
+import org.example.labs.domain.Region;
 
 import java.io.IOException;
 import java.sql.SQLDataException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "addressServlet", value = "/address-servlet")
-public class AddressServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-
-    private final AddressDbDao addressDbDao = new AddressDbDao();
+@WebServlet(name = "cityServlet", value = "/city-servlet")
+public class CityServlet extends HttpServlet {
+    private final RegionDbDao regionDbDao = new RegionDbDao();
 
     private final CityDbDao cityDbDao = new CityDbDao();
-
-    public AddressServlet(){
-        super();
-    }
+    public CityServlet(){}
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
         try {
-            List<Address> addressList = new ArrayList<>();
-            addressList.addAll(addressDbDao.findAll());
-            for(Address a: addressList){
-                a.setCity(cityDbDao.findById(a.getCityId()));
+            List<City> cityList = new ArrayList<>();
+            cityList.addAll(cityDbDao.findAll());
+            for (City r: cityList){
+                r.setRegion(regionDbDao.findById(r.getRegionId()));
             }
-            request.setAttribute("addresses", addressList);
+            request.setAttribute("cities", cityList);
         } catch (SQLDataException e) {
             throw new RuntimeException(e);
         }
         String userPath = request.getServletPath();
-        if("/address-servlet".equals(userPath)){
-            request.getRequestDispatcher("/views/address.jsp").forward(request, response);
+        if("/city-servlet".equals(userPath)){
+            request.getRequestDispatcher("/views/city.jsp").forward(request, response);
         }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
+
 }

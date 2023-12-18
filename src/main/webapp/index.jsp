@@ -13,7 +13,10 @@
     <div class="list-group text-center py-3 px-3">
       <h2>Функции системы</h2>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item list-group-item-primary"><a href="#">Адресс клиентов</a></li>
+        <li class="list-group-item list-group-item-primary"><a href="/labs_war_exploded/address-servlet">Адресса</a></li>
+        <li class="list-group-item list-group-item-primary"><a href="/labs_war_exploded/country-servlet">Страны</a></li>
+        <li class="list-group-item list-group-item-primary"><a href="/labs_war_exploded/region-servlet">Регионы</a></li>
+        <li class="list-group-item list-group-item-primary"><a href="/labs_war_exploded/city-servlet">Города</a></li>
       </ul>
     </div>
   </div>
