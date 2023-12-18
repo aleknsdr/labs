@@ -41,9 +41,9 @@
                             <td>${region.getNameRegion()}</td>
                             <td>${region.getCountry()}</td>
                             <td width="20"><a href="#" role="button" class="btn btn-outline-primary">
-                                <img alt="Редактировать" src="/images/icon-edit.png" width="20" height="20"></a></td>
+                                <img alt="Редактировать" src="${pageContext.request.contextPath}/images/icon-edit.png" width="20" height="20"></a></td>
                             <td width="20"><a href="#" role="button" class="btn btn-outline-primary">
-                                <img alt="Удалить" src="/images/icon-delete.png" width="20" height="20"></a></td>
+                                <img alt="Удалить" src="${pageContext.request.contextPath}/images/icon-delete.png" width="20" height="20"></a></td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -59,13 +59,6 @@
                             <input type="text" name="inputNameRegion" class="form-control" id="nameRegion" />
                         </div>
                     </div>
-                    <!--<div class="mb-1">
-                        <br> <label for="countryId"
-                                    class="col-sm-3 col-form-label">Код страны</label>
-                        <div class="col-sm-6">
-                            <input type="text" name="inputCountryId" class="form-control" id="countryId" />
-                        </div>
-                    </div>-->
                     <div class="mb-1">
                         <br> <label for="country"
                                     class="col-sm-3 col-form-label">Страна</label>

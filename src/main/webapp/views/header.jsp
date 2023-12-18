@@ -7,7 +7,7 @@
 <nav class="navbar navbar-light bg-primary">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <img src="/images/person.png" alt="" width="80" height="80">
+            <img src="${pageContext.request.contextPath}/images/person.png" alt="" width="80" height="80">
         </a>
         <h2>Ведение адресов клиентов</h2>
     </div>

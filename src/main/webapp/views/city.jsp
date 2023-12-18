@@ -41,9 +41,9 @@
                             <td>${city.getNameCity()}</td>
                             <td>${city.getRegion()}</td>
                             <td width="20"><a href="#" role="button" class="btn btn-outline-primary">
-                                <img alt="Редактировать" src="/images/icon-edit.png" width="20" height="20"></a></td>
+                                <img alt="Редактировать" src="${pageContext.request.contextPath}/images/icon-edit.png" width="20" height="20"></a></td>
                             <td width="20"><a href="#" role="button" class="btn btn-outline-primary">
-                                <img alt="Удалить" src="/images/icon-delete.png" width="20" height="20"></a></td>
+                                <img alt="Удалить" src="${pageContext.request.contextPath}/images/icon-delete.png" width="20" height="20"></a></td>
                         </tr>
                     </c:forEach>
                     </tbody>
