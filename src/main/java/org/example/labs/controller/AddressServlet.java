@@ -26,6 +26,8 @@ public class AddressServlet extends HttpServlet {
 
     private final CityDbDao cityDbDao = new CityDbDao();
 
+    private final RegionDbDao regionDbDao = new RegionDbDao();
+
     public AddressServlet(){
         super();
     }
@@ -35,10 +37,16 @@ public class AddressServlet extends HttpServlet {
         try {
             List<Address> addressList = new ArrayList<>();
             addressList.addAll(addressDbDao.findAll());
+            List<City> cityList = new ArrayList<>();
+            cityList.addAll(cityDbDao.findAll());
+            for (City r: cityList){
+                r.setRegion(regionDbDao.findById(r.getRegionId()));
+            }
             for(Address a: addressList){
                 a.setCity(cityDbDao.findById(a.getCityId()));
             }
             request.setAttribute("addresses", addressList);
+            request.setAttribute("cities", cityList);
         } catch (SQLDataException e) {
             throw new RuntimeException(e);
         }
@@ -49,6 +57,26 @@ public class AddressServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        AddressDbDao addressDbDao1 = new AddressDbDao();
+
+        String person = request.getParameter("inputPerson");
+        String street = request.getParameter("inputStreet");
+        int building = Integer.parseInt(request.getParameter("inputBuilding"));
+        int office = Integer.parseInt(request.getParameter("inputOffice"));
+
+        String city = request.getParameter("city");
+
+        int index1 = city.indexOf('=');
+        int index2 = city.indexOf(",");
+        String c1 = city.substring(index1+1, index2);
+        Long idCity = Long.parseLong(c1.trim());
+
+        try {
+            Address address = new Address(person, street, building, office, cityDbDao.findById(idCity), idCity);
+            Long index = addressDbDao1.insert(address);
+        } catch (SQLDataException e) {
+            throw new RuntimeException(e);
+        }
         doGet(request, response);
     }
 }

@@ -4,7 +4,7 @@
 
 <html>
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-<title>Города</title>
+<title>Адресс</title>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -88,10 +88,18 @@
                         </div>
                     </div>
                     <div class="mb-1">
-                        <br> <label for="cityId"
-                                    class="col-sm-3 col-form-label">Код города</label>
+                        <br> <label for="city"
+                                    class="col-sm-3 col-form-label">Город</label>
                         <div class="col-sm-6">
-                            <input type="text" name="inputCityId" class="form-control" id="cityId" />
+                            <select name="city" class="form-control" id="city">
+                                <option>Выберите город</option>
+                                <jsp:useBean id="cities" scope="request" type="java.util.List"/>
+                                <c:forEach var="city" items="${cities}">
+                                    <option value="${city}">
+                                        <c:out value="${city.getNameCity()}"></c:out>
+                                    </option>
+                                </c:forEach>
+                            </select>
                         </div>
                     </div>
 

@@ -32,8 +32,8 @@ public class AddressDbDao implements RepositoryDAO<Address> {
             pst.setString(1, o.getPerson());
             pst.setString(2, o.getStreet());
             pst.setInt(3, o.getBuilding());
-            pst.setInt(3, o.getOffice());
-            pst.setLong(3, o.getCityId());
+            pst.setInt(4, o.getOffice());
+            pst.setLong(5, o.getCityId());
             pst.executeUpdate();
             ResultSet gk = pst.getGeneratedKeys();
             if(gk.next()){

@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="org.example.labs.domain.Country" %>
 
 <html>
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
@@ -60,11 +59,26 @@
                             <input type="text" name="inputNameRegion" class="form-control" id="nameRegion" />
                         </div>
                     </div>
-                    <div class="mb-1">
+                    <!--<div class="mb-1">
                         <br> <label for="countryId"
                                     class="col-sm-3 col-form-label">Код страны</label>
                         <div class="col-sm-6">
                             <input type="text" name="inputCountryId" class="form-control" id="countryId" />
+                        </div>
+                    </div>-->
+                    <div class="mb-1">
+                        <br> <label for="country"
+                                    class="col-sm-3 col-form-label">Страна</label>
+                        <div class="col-sm-6">
+                           <select name="country" class="form-control" id="country">
+                               <option>Выберите страну</option>
+                               <jsp:useBean id="countries" scope="request" type="java.util.List"/>
+                               <c:forEach var="country" items="${countries}">
+                                   <option value="${country}">
+                                       <c:out value="${country.getFullName()}"></c:out>
+                                   </option>
+                               </c:forEach>
+                           </select>
                         </div>
                     </div>
 

@@ -11,6 +11,7 @@ import org.example.labs.domain.Country;
 
 import java.io.IOException;
 import java.sql.SQLDataException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +20,6 @@ public class CountryServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     private final CountryDbDAO countryDbDAO = new CountryDbDAO();
-
-    private final RegionDbDao regionDbDao = new RegionDbDao();
 
     public CountryServlet(){
         super();
@@ -42,6 +41,19 @@ public class CountryServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        CountryDbDAO countryDbDAO = new CountryDbDAO();
+
+        String fullName = request.getParameter("inputFullName");
+        String shortName = request.getParameter("inputShortName");
+
+        Country newCountry = new Country(fullName, shortName);
+
+        try {
+            Long index = countryDbDAO.insert(newCountry);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
         doGet(request, response);
     }
 }
